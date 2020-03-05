@@ -38,11 +38,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 60F);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.Location = new System.Drawing.Point(262, 91);
+            this.label1.Location = new System.Drawing.Point(224, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(471, 138);
+            this.label1.Size = new System.Drawing.Size(587, 172);
             this.label1.TabIndex = 0;
             this.label1.Text = "Froggur";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -51,9 +51,9 @@
             // 
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(262, 340);
+            this.button1.Location = new System.Drawing.Point(288, 340);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 60);
+            this.button1.Size = new System.Drawing.Size(150, 80);
             this.button1.TabIndex = 1;
             this.button1.Text = "Play";
             this.button1.UseVisualStyleBackColor = true;
@@ -63,10 +63,10 @@
             // 
             this.button2.BackColor = System.Drawing.SystemColors.Control;
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(572, 343);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.button2.Location = new System.Drawing.Point(581, 340);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 60);
+            this.button2.Size = new System.Drawing.Size(150, 80);
             this.button2.TabIndex = 2;
             this.button2.Text = "Exit";
             this.button2.UseVisualStyleBackColor = false;
@@ -79,6 +79,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
+            this.Cursor = System.Windows.Forms.Cursors.No;
             this.Name = "MainScreen";
             this.Size = new System.Drawing.Size(1000, 600);
             this.ResumeLayout(false);

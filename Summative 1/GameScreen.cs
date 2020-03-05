@@ -8,22 +8,31 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 namespace Summative_1
-{
+{/// <summary>
+/// Frogger type game by Seamus Kittmer March 4/2020
+/// </summary>
     public partial class GameScreen : UserControl
     {
+
         #region variables
         //random generator
-        Random randGen = new Random();
 
-        int dis1, dis2;
+        public Random randGen = new Random();
+
+
+
+        //iamges
+        public Image frogz = Properties.Resources.frogBack;
+
+        // int dis1, dis2;
         int z = 0;
+        // public static int lives = 3;
         int pattern = 2;
         int specialCounter = 0;
 
         // player control keys
-        Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown, pKey, pause;
-        Boolean carCheck, car2Check = false;
-        Boolean skin = true;
+        Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown, pKey;
+
         //lists for each element of the game
         List<Frog> carList = new List<Frog>();
         List<Frog> car2List = new List<Frog>();
@@ -32,11 +41,13 @@ namespace Summative_1
         int frogSize = 30;
         Image FROG;
         Frog frog;
+        Frog car;
+        Frog car2;
 
         //car dec
         int carOffset = -10;
         int carY1 = 100;
-        int carY2 = 200;
+        int carY2 = 190;
         int carRightx = 570;
         int carRightx2 = 620;
         int carSize = 50;
@@ -50,15 +61,13 @@ namespace Summative_1
         }
         public void OnStart()
         {
-            frog = new Frog(FROG, 30, this.Height * 90 / 100, frogSize);
+            Form1.lives = 3;
+            frog = new Frog(FROG, 250, this.Height * 90 / 100, frogSize);
 
-            Frog car = new Frog(carRightx, carY1, carSize);
-
+            car = new Frog(carRightx, carY1, carSize);
             carList.Add(car);
 
-
-            Frog car2 = new Frog(carRightx2, carY2, carSize);
-
+            car2 = new Frog(carRightx2, carY2, carSize);
             car2List.Add(car2);
 
         }
@@ -66,30 +75,37 @@ namespace Summative_1
 
         private void GameScreen_PreviewKeyDown_1(object sender, PreviewKeyDownEventArgs e)
         {
-            //player 1 button presses
-            switch (e.KeyCode)
+            if (frog.x > car2.x)
             {
-                case Keys.Left:
-                    leftArrowDown = true;
-                    break;
-                case Keys.Right:
-                    rightArrowDown = true;
-                    break;
-                case Keys.Up:
-                    upArrowDown = true;
-                    break;
-                case Keys.Down:
-                    downArrowDown = true;
-                    break;
-                case Keys.P:
-                    pKey = true;
-                    if (pause = true)
-                    {
-                        label1.Visible = false;
-                        timer1.Enabled = true; 
-                    }
-                    pause = false;
-                    break;
+                //player button presses
+                switch (e.KeyCode)
+                {
+                    case Keys.Left:
+                        leftArrowDown = true;
+                        rightArrowDown = false;
+                        downArrowDown = false;
+                        //upArrowDown = false;
+                        break;
+                    case Keys.Right:
+                        rightArrowDown = true;
+                        leftArrowDown = false;
+                        downArrowDown = false;
+                        // upArrowDown = false;
+                        break;
+                    case Keys.Up:
+                        upArrowDown = true;
+                        rightArrowDown = false;
+                        leftArrowDown = false;
+                        break;
+                    case Keys.Down:
+                        downArrowDown = true;
+                        rightArrowDown = false;
+                        leftArrowDown = false;
+                        break;
+                    case Keys.P:
+                        pKey = true;
+                        break;
+                }
             }
         }
 
@@ -119,9 +135,22 @@ namespace Summative_1
                     break;
                 case Keys.P:
                     pKey = false;
-                    z++;
                     break;
             }
+        }
+        private void button1_Click(object sender, EventArgs e)//unpause play button
+        {
+            label1.Visible = false;
+            button1.Visible = false;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button2.Visible = false;
+            timer1.Enabled = true;
+            this.Focus();
+        }
+        private void button2_Click(object sender, EventArgs e)//gamse exit buttonin pause screen
+        {
+            Application.Exit();
         }
         #endregion
         #region gameloop tick
@@ -145,12 +174,10 @@ namespace Summative_1
             {
                 car2List.RemoveAt(0);
             }
-
             //add new cars if it is time
-            if (carCounter == 10)
+            if (carCounter == 12)
             {
                 carCounter = 0;
-
                 carRightx += carOffset;
 
                 Frog car = new Frog(carRightx, carY1, carSize);
@@ -163,10 +190,9 @@ namespace Summative_1
                     pattern = randGen.Next(1, 8);
                 }
             }
-            if (carCounter2 == 10)
+            if (carCounter2 == 13)//same thing but fro list two
             {
                 carCounter2 = 0;
-
                 specialCounter++;
 
                 carRightx2 += carOffset;
@@ -208,27 +234,56 @@ namespace Summative_1
             if (frog.y > this.Height - frogSize)
             { frog.y = frog.y - 10; }
             #endregion
+
             #region pause
             if (pKey)
             {
                 timer1.Enabled = false;
-                pause = true;
                 label1.Visible = true;
+                button1.Enabled = true;
+                button1.Visible = true;
+                button2.Enabled = true;
+                button2.Visible = true;
             }
             #endregion
-            #region collision 
+            #region collision/ win 
             //check for collision between frog and cars
             foreach (Frog c in carList.Union(car2List))
             {
                 if (c.Collision(frog))
                 {
                     timer1.Enabled = false;
+                    frog = new Frog(FROG, 250, this.Height * 90 / 100, frogSize);
+                    Form1.lives--;
+                    timer1.Enabled = true;
                 }
             }
-            #endregion
 
+            if (frog.y < frogSize)//win clause 
+            {
+                timer1.Enabled = false;
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+
+                WinScreen ws = new WinScreen();
+                f.Controls.Add(ws);
+                Form1.lives = 3;
+            }
+
+            if (Form1.lives == 0)
+            {
+                timer1.Enabled = false;
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+
+                WinScreen ws = new WinScreen();
+                f.Controls.Add(ws);
+            }
+            #endregion
             carCounter++;
             carCounter2++;
+            Form1.score = Form1.score - 1;
+            label2.Text = "Lives " + Form1.lives+" Score " +Form1.score;
             Refresh();
         }
         #endregion
@@ -242,11 +297,11 @@ namespace Summative_1
             //cars on screen
             foreach (Frog c in carList)
             {
-                e.Graphics.DrawImage(c.carz, c.x, c.y, c.size + 10, c.size);
+                e.Graphics.DrawImage(c.carz, c.x + carOffset, c.y, c.size + 10, c.size);
             }
             foreach (Frog c in car2List)
             {
-                e.Graphics.DrawImage(c.carz, c.x, c.y, c.size + 10, c.size);
+                e.Graphics.DrawImage(c.carz, c.x + carOffset, c.y, c.size + 10, c.size);
             }
         }
         #endregion

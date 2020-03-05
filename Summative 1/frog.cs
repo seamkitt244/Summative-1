@@ -11,7 +11,7 @@ namespace Summative_1
     {
         public int x, y, size;
         public int carOffset = -10;
-        Random randGen = new Random();
+        public  Random randGen = new Random();
         public Image carz = Properties.Resources.car2;
         public Image frogz = Properties.Resources.frogBack;
         Image frogBack = Properties.Resources.frogBack;
@@ -84,19 +84,24 @@ namespace Summative_1
         {
             frogz = frogBack;
         }
-
         public void Pattern()
         {
-            int patt = randGen.Next(1, 3);
+            int patt = randGen.Next(1, 8);
 
             if (patt == 1)
-            {
-               carOffset = carOffset + 10;
-            }
+            {carOffset = carOffset + 5;}
             if (patt == 2)
-            {
-                carOffset = carOffset + 20;
-            }
+            {carOffset = carOffset + 7;}
+            if (patt == 3)
+            { carOffset = carOffset + 10; }
+            if (patt == 4)
+            { carOffset = carOffset + 12; }
+            if (patt == 5)
+            { carOffset = carOffset + 15; }
+            if (patt == 6)
+            { carOffset = carOffset + 20; }
+            if (patt == 7)
+            { carOffset = carOffset + 22; }
         }
 
         public Boolean Collision(Frog g)

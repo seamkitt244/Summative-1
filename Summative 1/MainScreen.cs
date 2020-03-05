@@ -16,14 +16,14 @@ namespace Summative_1
         {
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
             GameScreen gs = new GameScreen();
-            this.Controls.Add(gs);
+            f.Controls.Add(gs);
+            gs.Focus();
         }
     }
 }

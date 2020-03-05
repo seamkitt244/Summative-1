@@ -6,12 +6,16 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Summative_1
 {
     public partial class Form1 : Form
     {
+        
+        public static int lives = 3;
+        public static int score = 1000;
         public Form1()
         {
             InitializeComponent();
@@ -21,9 +25,8 @@ namespace Summative_1
         {
             MainScreen ms = new MainScreen();
             this.Controls.Add(ms);
-
-            //GameScreen gs = new GameScreen();
-            //this.Controls.Add(gs);
+            ms.Focus();
+            Cursor.Hide();
         }
     }
 }
