@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameScreen));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pauseLabel = new System.Windows.Forms.Label();
+            this.playButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // timer1
@@ -42,30 +42,30 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label1
+            // pauseLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(396, 119);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(220, 73);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Pause";
-            this.label1.Visible = false;
+            this.pauseLabel.AutoSize = true;
+            this.pauseLabel.BackColor = System.Drawing.Color.Transparent;
+            this.pauseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pauseLabel.Location = new System.Drawing.Point(396, 119);
+            this.pauseLabel.Name = "pauseLabel";
+            this.pauseLabel.Size = new System.Drawing.Size(220, 73);
+            this.pauseLabel.TabIndex = 0;
+            this.pauseLabel.Text = "Pause";
+            this.pauseLabel.Visible = false;
             // 
-            // button1
+            // playButton
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(266, 277);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 60);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Play";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playButton.Location = new System.Drawing.Point(266, 277);
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(150, 80);
+            this.playButton.TabIndex = 1;
+            this.playButton.Text = "Play";
+            this.playButton.UseVisualStyleBackColor = true;
+            this.playButton.Visible = false;
+            this.playButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -78,17 +78,17 @@
             this.label2.Size = new System.Drawing.Size(0, 37);
             this.label2.TabIndex = 2;
             // 
-            // button2
+            // exitButton
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(606, 277);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 60);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Exit";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitButton.Location = new System.Drawing.Point(606, 277);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(150, 80);
+            this.exitButton.TabIndex = 3;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Visible = false;
+            this.exitButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // GameScreen
             // 
@@ -96,10 +96,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.playButton);
+            this.Controls.Add(this.pauseLabel);
             this.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.DoubleBuffered = true;
             this.Name = "GameScreen";
@@ -115,9 +115,9 @@
         #endregion
 
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label pauseLabel;
+        private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button exitButton;
     }
 }

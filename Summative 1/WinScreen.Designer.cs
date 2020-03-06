@@ -53,7 +53,7 @@
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(220, 80);
             this.playButton.TabIndex = 1;
-            this.playButton.Text = "Play Again";
+            this.playButton.Text = "Play";
             this.playButton.UseVisualStyleBackColor = true;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
@@ -74,7 +74,7 @@
             this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.scoreLabel.Location = new System.Drawing.Point(339, 291);
+            this.scoreLabel.Location = new System.Drawing.Point(278, 290);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(29, 42);
             this.scoreLabel.TabIndex = 3;

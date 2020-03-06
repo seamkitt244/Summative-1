@@ -130,5 +130,26 @@
   <ItemGroup>
     <None Include="Resources\frogLside.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Spit_Splat-Mike_Koenig-1170500447.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blood.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blooda.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blood.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Untitled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crowd Boo 3-SoundBible.com-595364990.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crowd_Applause-Thore-672347161.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

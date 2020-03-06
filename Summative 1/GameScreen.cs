@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
+using System.Media;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,19 +13,16 @@ namespace Summative_1
 /// </summary>
     public partial class GameScreen : UserControl
     {
-
         #region variables
         //random generator
-
         public Random randGen = new Random();
 
-
+        //Soundplayer
+        SoundPlayer splat = new SoundPlayer(Properties.Resources.splat);
 
         //iamges
         public Image frogz = Properties.Resources.frogBack;
-
-        // int dis1, dis2;
-        int z = 0;
+        Image blood = Properties.Resources.Untitled;
         // public static int lives = 3;
         int pattern = 2;
         int specialCounter = 0;
@@ -39,6 +36,7 @@ namespace Summative_1
 
         //frog declarations
         int frogSize = 30;
+        int deadX, deadY;
         Image FROG;
         Frog frog;
         Frog car;
@@ -53,6 +51,7 @@ namespace Summative_1
         int carSize = 50;
         int carCounter = 0;
         int carCounter2 = 0;
+
         #endregion
         public GameScreen()
         {
@@ -69,28 +68,23 @@ namespace Summative_1
 
             car2 = new Frog(carRightx2, carY2, carSize);
             car2List.Add(car2);
-
         }
         #region keydown/keyup
-
         private void GameScreen_PreviewKeyDown_1(object sender, PreviewKeyDownEventArgs e)
         {
             if (frog.x > car2.x)
             {
-                //player button presses
-                switch (e.KeyCode)
+                switch (e.KeyCode)//player button presses
                 {
                     case Keys.Left:
                         leftArrowDown = true;
                         rightArrowDown = false;
                         downArrowDown = false;
-                        //upArrowDown = false;
                         break;
                     case Keys.Right:
                         rightArrowDown = true;
                         leftArrowDown = false;
                         downArrowDown = false;
-                        // upArrowDown = false;
                         break;
                     case Keys.Up:
                         upArrowDown = true;
@@ -102,18 +96,16 @@ namespace Summative_1
                         rightArrowDown = false;
                         leftArrowDown = false;
                         break;
-                    case Keys.P:
+                    case Keys.P://pause button
                         pKey = true;
                         break;
                 }
             }
         }
-
         private void checkBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            //player 1 button releases
             switch (e.KeyCode)
-            {
+            {//player 1 button releases
                 case Keys.Left:
                     leftArrowDown = false;
                     frog.Rest();
@@ -133,22 +125,22 @@ namespace Summative_1
                     downArrowDown = false;
                     frog.Rest();
                     break;
-                case Keys.P:
+                case Keys.P://pause button
                     pKey = false;
                     break;
             }
         }
         private void button1_Click(object sender, EventArgs e)//unpause play button
         {
-            label1.Visible = false;
-            button1.Visible = false;
-            button1.Enabled = false;
-            button2.Enabled = false;
-            button2.Visible = false;
+            pauseLabel.Visible = false;
+            playButton.Visible = false;
+            playButton.Enabled = false;
+            exitButton.Enabled = false;
+            exitButton.Visible = false;
             timer1.Enabled = true;
             this.Focus();
         }
-        private void button2_Click(object sender, EventArgs e)//gamse exit buttonin pause screen
+        private void button2_Click(object sender, EventArgs e)//game exit button in pause screen
         {
             Application.Exit();
         }
@@ -156,8 +148,7 @@ namespace Summative_1
         #region gameloop tick
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //update location of all cars (move accross screen)
-            foreach (Frog car in carList)
+            foreach (Frog car in carList)//update location of all cars (move accross screen)
             {
                 car.Move("accross");
             }
@@ -165,25 +156,27 @@ namespace Summative_1
             {
                 car.Move("accross");
             }
-            //remove car if it has gone of screen
-            if (carList[0].x < -carSize)
+
+            if (carList[0].x < -carSize)//remove car if it has gone of screen
             {
                 carList.RemoveAt(0);
             }
+
             if (car2List[0].x < -carSize)
             {
                 car2List.RemoveAt(0);
             }
-            //add new cars if it is time
-            if (carCounter == 12)
+
+            if (carCounter == 12)//add new cars if it is time
             {
                 carCounter = 0;
+                specialCounter++;
                 carRightx += carOffset;
 
                 Frog car = new Frog(carRightx, carY1, carSize);
                 carList.Add(car);
 
-                if (specialCounter == pattern)
+                if (specialCounter == pattern)//setting new pattern value
                 {
                     car.Pattern();
                     specialCounter = 0;
@@ -194,13 +187,12 @@ namespace Summative_1
             {
                 carCounter2 = 0;
                 specialCounter++;
-
                 carRightx2 += carOffset;
 
                 Frog car2 = new Frog(carRightx, carY2, carSize);
                 car2List.Add(car2);
 
-                if (specialCounter == pattern)
+                if (specialCounter == pattern)//setting new pattern value
                 {
                     carOffset = -carOffset;
                     specialCounter = 0;
@@ -208,94 +200,86 @@ namespace Summative_1
                 }
             }
             #region frog move
-            // move frog
-            if (leftArrowDown)
-            {
-                frog.Move("left");
-            }
+            if (leftArrowDown) // move frog
+            { frog.Move("left"); }
+
             if (rightArrowDown)
-            {
-                frog.Move("right");
-            }
+            { frog.Move("right"); }
+
             if (upArrowDown)
-            {
-                frog.Move("up");
-            }
+            { frog.Move("up"); }
+
             if (downArrowDown)
-            {
-                frog.Move("down");
-            }
+            { frog.Move("down"); }
+
             if (frog.x > this.Width)
             { frog.x = frog.x - 10; }
 
             if (frog.x < 0)
             { frog.x = frog.x + 10; }
 
+            if (frog.x > this.Width)
+            { frog.x = frog.x - 10; }
+
             if (frog.y > this.Height - frogSize)
             { frog.y = frog.y - 10; }
             #endregion
-
-            #region pause
-            if (pKey)
+            #region pause the game
+            if (pKey)//pause engaged
             {
                 timer1.Enabled = false;
-                label1.Visible = true;
-                button1.Enabled = true;
-                button1.Visible = true;
-                button2.Enabled = true;
-                button2.Visible = true;
+                pauseLabel.Visible = true;
+                playButton.Enabled = true;
+                playButton.Visible = true;
+                exitButton.Enabled = true;
+                exitButton.Visible = true;
             }
             #endregion
-            #region collision/ win 
-            //check for collision between frog and cars
+            #region collision/ win/ lose
             foreach (Frog c in carList.Union(car2List))
-            {
+            { //check for collision between frog and cars
                 if (c.Collision(frog))
                 {
                     timer1.Enabled = false;
+                    deadX = frog.x;
+                    deadY = frog.y;
                     frog = new Frog(FROG, 250, this.Height * 90 / 100, frogSize);
                     Form1.lives--;
                     timer1.Enabled = true;
+                    splat.Play();
                 }
             }
 
-            if (frog.y < frogSize)//win clause 
+            if (frog.y < frogSize || Form1.lives == 0)//win clause/lose clause, game loop is stopped
             {
                 timer1.Enabled = false;
                 Form f = this.FindForm();
                 f.Controls.Remove(this);
 
                 WinScreen ws = new WinScreen();
+                ws.Location = new Point((f.Width - ws.Width) / 2, (f.Height - ws.Height) / 2);
                 f.Controls.Add(ws);
                 Form1.lives = 3;
             }
-
-            if (Form1.lives == 0)
-            {
-                timer1.Enabled = false;
-                Form f = this.FindForm();
-                f.Controls.Remove(this);
-
-                WinScreen ws = new WinScreen();
-                f.Controls.Add(ws);
-            }
             #endregion
-            carCounter++;
+            carCounter++;//adding to car lists so that new cars will draw
             carCounter2++;
-            Form1.score = Form1.score - 1;
-            label2.Text = "Lives " + Form1.lives+" Score " +Form1.score;
+            if (car.x < 100)//taking away score
+            { Form1.score = Form1.score - 1; }
+            label2.Text = "Lives " + Form1.lives + " Score " + Form1.score;//displaying lives, and score
             Refresh();
         }
         #endregion
         #region paint 
-
         private void GameScreen_Paint(object sender, PaintEventArgs e)
-        {
-            //draw frog on screen
+        {//draw frog on screen
+
+            if (Form1.lives < 3)
+            { e.Graphics.DrawImage(blood, deadX, deadY, frog.size, frog.size); }
+
             e.Graphics.DrawImage(frog.frogz, frog.x, frog.y, frog.size, frog.size);
 
-            //cars on screen
-            foreach (Frog c in carList)
+            foreach (Frog c in carList)//drawing cars on screen
             {
                 e.Graphics.DrawImage(c.carz, c.x + carOffset, c.y, c.size + 10, c.size);
             }
@@ -303,6 +287,7 @@ namespace Summative_1
             {
                 e.Graphics.DrawImage(c.carz, c.x + carOffset, c.y, c.size + 10, c.size);
             }
+
         }
         #endregion
     }

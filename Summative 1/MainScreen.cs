@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Summative_1
@@ -13,17 +9,16 @@ namespace Summative_1
     public partial class MainScreen : UserControl
     {
         public MainScreen()
-        {
-            InitializeComponent();
-        }
+        { InitializeComponent();}
         private void button1_Click(object sender, EventArgs e)
         {
-            Form f = this.FindForm();
+            Form f = this.FindForm();//Removinng the mainScreen usercontrol, and opening gameScreen
             f.Controls.Remove(this);
 
             GameScreen gs = new GameScreen();
+            gs.Location = new Point((f.Width - gs.Width) / 2, (f.Height - gs.Height) / 2);//setting GameScreen location
             f.Controls.Add(gs);
-            gs.Focus();
+            gs.Focus();//
         }
     }
 }

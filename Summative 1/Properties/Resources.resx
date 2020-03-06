@@ -139,4 +139,16 @@
   <data name="frogSide" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\frogSide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="lose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crowd Boo 3-SoundBible.com-595364990.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="splat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Spit_Splat-Mike_Koenig-1170500447.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Untitled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Untitled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="win" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crowd_Applause-Thore-672347161.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
