@@ -167,7 +167,7 @@ namespace Summative_1
                 car2List.RemoveAt(0);
             }
 
-            if (carCounter == 12)//add new cars if it is time
+            if (carCounter == 15)//add new cars if it is time
             {
                 carCounter = 0;
                 specialCounter++;
@@ -183,7 +183,7 @@ namespace Summative_1
                     pattern = randGen.Next(1, 8);
                 }
             }
-            if (carCounter2 == 13)//same thing but fro list two
+            if (carCounter2 == 14)//same thing but fro list two
             {
                 carCounter2 = 0;
                 specialCounter++;
@@ -274,10 +274,10 @@ namespace Summative_1
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {//draw frog on screen
 
-            if (Form1.lives < 3)
+            if (Form1.lives < 3)///drawing the last place of death
             { e.Graphics.DrawImage(blood, deadX, deadY, frog.size, frog.size); }
 
-            e.Graphics.DrawImage(frog.frogz, frog.x, frog.y, frog.size, frog.size);
+            e.Graphics.DrawImage(frog.frogz, frog.x, frog.y, frog.size, frog.size);//drawing frog
 
             foreach (Frog c in carList)//drawing cars on screen
             {
